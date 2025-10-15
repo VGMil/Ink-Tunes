@@ -1,24 +1,22 @@
-import ButtonText from '@/components/ui/ButtonText'
-import CustomText from '@/components/ui/CustomText'
-import React from 'react'
-import { View } from 'react-native'
-
+import LoginForm from '@/components/auth/LoginForm';
+import CustomText from '@/components/ui/CustomText';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import React from 'react';
+import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const AuthScreen = () => {
   return (
-    <View className='flex-1 justify-center items-center gap-4'>
-      <CustomText category='h1' className='font-bold'>AuthScreen</CustomText>
-      <ButtonText category='primary' text="Primario"/>
-      <ButtonText category='primary' disabled text="Primario"/>
-      <ButtonText category='secondary' text="Secundario"/>
-      <ButtonText category='success' text="Success"/>
-      <ButtonText category='warning' text="Warning"/>
-      <ButtonText category='danger' text="Danger"/>
-      <ButtonText category='primary' variant='outline' text="Primario outline"/>
-      <ButtonText category='secondary' variant='outline' text="Secundario outline"/>
-      <ButtonText category='success' variant='outline' text="Success outline"/>
-      <ButtonText category='warning' variant='outline' text="Warning outline"/>
-      <ButtonText category='danger' variant='outline' text="Danger outline"/>
-    </View>
+    <SafeAreaView className='flex-1 justify-start items-center gap-4 p-4'>
+      {/* header */}
+      <View className='bg-teal-50 rounded-full p-4 items-center justify-center border-teal-500 border-2'>
+        <Ionicons name="musical-notes-outline" size={96} color="teal" />
+      </View>
+      <CustomText category='h1' color='black' className='font-bold'>inkTunes</CustomText>
+      <CustomText category="p" color='gray'>Tu Musica empieza Aqui</CustomText>
+      {/* Form */}
+      <LoginForm></LoginForm>
+
+    </SafeAreaView>
   )
 }
 

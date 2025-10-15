@@ -1,28 +1,29 @@
 import Button from '@/components/ui/Button'
+import CustomText from '@/components/ui/CustomText'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 const AuthScreen = () => {
   return (
     <View className='flex-1 justify-center items-center gap-4'>
-      <Text className='text-3xl bold'>AuthScreen</Text>
+      <CustomText category='h1' className='font-bold'>AuthScreen</CustomText>
       <Button category='primary' size='sm'>
-        <Text>Hola</Text>
+        <CustomText color='white' category='span'>Hola</CustomText>
       </Button>
-      <Button category='primary' size='sm' disabled>
-        <Text>Hola</Text>
+      <Button category='primary' disabled>
+        <CustomText color='gray' category='span'>Hola</CustomText>
       </Button>
       <Button category='secondary'>
-        <Text>Hola</Text>
+        <CustomText color='black' category='span'>Hola</CustomText>
       </Button>
       <Button category='success'>
-        <Text>Hola</Text>
+        <CustomText color='white' category='span'>Hola</CustomText>
       </Button>
       <Button category='warning'>
-        <Text>Hola</Text>
+        <CustomText color='white' category='span'>Hola</CustomText>
       </Button>
       <Button category='danger'>
-        <Text>Hola</Text>
+        <CustomText color='white' category='span'>Hola</CustomText>
       </Button>
     </View>
   )

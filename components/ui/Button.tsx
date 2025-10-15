@@ -41,8 +41,7 @@ const Button = ({
             size,
             disabled,
             fullWidth
-        )} 
-        ${disabled ? "opacity-20" : ""}`}
+        )}`}
     >
       {children}
     </TouchableOpacity>
@@ -58,7 +57,8 @@ function getButtonStyles(
 ): string {
   const sizeStyles = getSizeStyles(size);
   const widthStyle = fullWidth ? "w-full" : "min-w-[80px]";
-  const baseStyles = `items-center justify-center ${sizeStyles} ${widthStyle}`;
+  const disabledStyle = disabled ? "opacity-20" : ""
+  const baseStyles = `items-center justify-center ${sizeStyles} ${widthStyle} ${disabledStyle}`;
 
   if (variant === "outline") {
     return `${baseStyles} border-2 bg-transparent ${getOutlineStyles(category)}`;

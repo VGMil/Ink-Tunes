@@ -29,6 +29,7 @@ const Button = ({
   onPress,
   disabled = false,
   fullWidth = false,
+  className
 }: ButtonProps) => {
   return (
     <TouchableOpacity
@@ -41,7 +42,8 @@ const Button = ({
             size,
             disabled,
             fullWidth
-        )}`}
+        )}
+        ${className}`}
     >
       {children}
     </TouchableOpacity>

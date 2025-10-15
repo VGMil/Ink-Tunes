@@ -55,7 +55,7 @@ const setColorStyle = (color:ColorText)=>{
         case 'teal':
             return 'text-teal-500'
         case 'gold':
-            return 'text-lime-600'
+            return 'text-gold'
         case 'gray':
             return 'text-gray-500'
         default:

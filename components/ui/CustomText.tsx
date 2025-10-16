@@ -6,7 +6,7 @@ type ColorText = 'white'|'black'|'teal'|'gold'|'gray'
 
 
 interface CustomTextProps{
-    children:string
+    children:React.ReactNode
     category?:CategoryText
     color?:ColorText
     className?:string

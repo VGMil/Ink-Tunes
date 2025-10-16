@@ -3,7 +3,14 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import ButtonText from "../ui/ButtonText";
 import CustomText from "../ui/CustomText";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  changeToRegister: () => void;
+}
+
+
+const LoginForm = ({
+  changeToRegister
+}: LoginFormProps) => {
   return (
     <View className="w-full justify-start border-black border-2 bg-white p-4 gap-4">
       <CustomText>Email</CustomText>
@@ -37,7 +44,7 @@ const LoginForm = () => {
       <CustomText color="gray" category="span" className="self-center">
         ¿No tienes una cuenta?
       </CustomText>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={changeToRegister}>
         <CustomText color="teal" category="span" className="self-center">
           Registrate
         </CustomText>

@@ -1,0 +1,7 @@
+{
+  "replaceAttrValues": {
+    "currentColor": "{props.stroke}"
+  },
+  "native": true,
+  "typescript": true
+}

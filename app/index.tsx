@@ -1,9 +1,12 @@
 import "@/global.css";
-import { Text, View } from "react-native";
+import { Redirect, router } from "expo-router";
+
 export default function Index() {
-  return (
-    <View className="flex-1 justify-center items-center">
-      <Text className="text-3xl">Edit app/index.tsx to edit this screen.</Text>
-    </View>
-  );
+  const isAuthenticated = false;
+  
+  if (!isAuthenticated) {
+    return <Redirect href={"/AuthScreen"}></Redirect>
+  } else {
+    router.push("/");    
+  }
 }

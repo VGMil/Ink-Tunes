@@ -13,7 +13,7 @@ const RegisterForm = ({
     changeToLogin
 }: RegisterFormProps) => {
   return (
-    <View className="w-full justify-start border-black border-2 bg-white p-4 gap-2">
+    <View className="w-full justify-start border-black border-2 bg-white px-4 py-2">
       <InputField label="Nombre" placeholder="Nombre Apellido" icon="person-outline"></InputField>
       <InputField label="Email" placeholder="tu@email.com" icon="mail-outline"></InputField>
       <InputField label="Contraseña" placeholder="**********" icon="lock-closed-outline" secureTextEntry></InputField>

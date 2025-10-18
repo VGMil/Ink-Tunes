@@ -75,13 +75,16 @@ const InputField = ({
                 />
             </Pressable>
             
-            {error && touched && (
-                <Animated.View style={animatedStyle} className="w-full mt-0">
+            {error && touched ? (
+                <Animated.View style={animatedStyle} className="w-full mt-0 flex-row items-center justify-start">
+                    <Ionicons name="alert-circle-outline" size={18} color="red" className="mr-1"></Ionicons>
                     <CustomText color="error" category="span">
                         {error}
                     </CustomText>
                 </Animated.View>
-            )}
+            ):
+                <View className='w-full h-[25px] mt-0 '></View>
+            }
         </View>
     )
 }

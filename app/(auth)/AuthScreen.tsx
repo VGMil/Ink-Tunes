@@ -78,7 +78,7 @@ const AuthScreen = () => {
         Tu Musica empieza Aqui
       </CustomText>
       {/* Form */}
-      <Animated.View style={handleTranslate}>
+      <Animated.View style={handleTranslate} className="-mt-2">
         {handleForm ? (
           <LoginForm changeToRegister={() => setHandleForm(false)} />
         ) : (

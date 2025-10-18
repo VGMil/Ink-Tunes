@@ -1,7 +1,8 @@
 import React from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import ButtonText from "../ui/ButtonText";
 import CustomText from "../ui/CustomText";
+import InputField from "../ui/InputField";
 
 interface LoginFormProps {
   changeToRegister: () => void;
@@ -12,17 +13,9 @@ const LoginForm = ({
   changeToRegister
 }: LoginFormProps) => {
   return (
-    <View className="w-full justify-start border-black border-2 bg-white p-4 gap-4">
-      <CustomText>Email</CustomText>
-      <TextInput 
-        placeholder="tu@email.com"
-        className="border-2 focus:border-primary focus:ring-primary"
-      />
-      <CustomText>Constraseña</CustomText>
-      <TextInput 
-        placeholder="*********"
-        className="border-2 focus:border-primary focus:ring-primary"
-      />
+    <View className="w-full justify-start border-black border-2 bg-white p-4 gap-6">
+      <InputField label="Email" placeholder="Nombre Apellido" icon="person-outline"></InputField>
+      <InputField label="Password" placeholder="***********" icon="lock-closed-outline" secureTextEntry></InputField>
       <View>
         {/* CheckBox */}
         <CustomText color="teal" category="link">

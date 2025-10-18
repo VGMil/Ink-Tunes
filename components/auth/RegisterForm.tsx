@@ -1,7 +1,8 @@
 import React from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import ButtonText from "../ui/ButtonText";
 import CustomText from "../ui/CustomText";
+import InputField from "../ui/InputField";
 
 interface RegisterFormProps {
   changeToLogin: () => void;
@@ -13,26 +14,10 @@ const RegisterForm = ({
 }: RegisterFormProps) => {
   return (
     <View className="w-full justify-start border-black border-2 bg-white p-4 gap-2">
-      <CustomText>Nombre completo</CustomText>
-      <TextInput 
-        placeholder="Nombre Apellido"
-        className="border-2 focus:border-primary focus:ring-primary"
-      />
-      <CustomText>Email</CustomText>
-      <TextInput 
-        placeholder="tu@email.com"
-        className="border-2 focus:border-primary focus:ring-primary"
-      />
-      <CustomText>Contraseña</CustomText>
-      <TextInput 
-        placeholder="*********"
-        className="border-2 focus:border-primary focus:ring-primary"
-      />
-      <CustomText>Confirmar contraseña</CustomText>
-      <TextInput 
-        placeholder="*********"
-        className="border-2 focus:border-primary focus:ring-primary"
-      />
+      <InputField label="Nombre" placeholder="Nombre Apellido" icon="person-outline"></InputField>
+      <InputField label="Email" placeholder="tu@email.com" icon="mail-outline"></InputField>
+      <InputField label="Contraseña" placeholder="**********" icon="lock-closed-outline" secureTextEntry></InputField>
+      <InputField label="Confirmar contraseña" placeholder="**********" icon="lock-closed-outline" secureTextEntry></InputField>
       <View>
         {/* CheckBox para términos y condiciones */}
         <CustomText color="gray" category="span">

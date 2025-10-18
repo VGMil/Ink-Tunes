@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from 'react-native'
 
 type CategoryText = 'h1'|'h2'|'h3'|'p'|'span'|'link'
-type ColorText = 'white'|'black'|'teal'|'gold'|'gray'
+type ColorText = 'white'|'black'|'teal'|'gold'|'gray'|'error'
 
 
 interface CustomTextProps{
@@ -58,6 +58,8 @@ const setColorStyle = (color:ColorText)=>{
             return 'text-gold'
         case 'gray':
             return 'text-gray-500'
+        case 'error':
+            return 'text-red-500'
         default:
             return 'text-white'
     }

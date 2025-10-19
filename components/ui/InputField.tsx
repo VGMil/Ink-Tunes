@@ -58,7 +58,7 @@ const InputField = ({
             
             <Pressable 
                 onPress={() => inputRef.current?.focus()}
-                className={`px-4 py-0 flex-row items-center border-2 ${selectStyleField(touched, error)}`}
+                className={`pl-4 py-0 flex-row items-center border-2 ${selectStyleField(touched, error)}`}
             >
                 {icon && icon.length > 0 &&
                     <Ionicons

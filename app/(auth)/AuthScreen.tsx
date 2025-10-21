@@ -4,7 +4,7 @@ import RegisterForm from "@/components/auth/RegisterForm";
 import CustomText from "@/components/ui/CustomText";
 import { cssInterop } from "nativewind";
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { KeyboardAvoidingView, Platform, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -17,7 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 cssInterop(MusicalNotesIcon, {
   className: {
     target: "style",
-    nativeStyleToProp: { stroke: true, fill: true, color: true }
+    nativeStyleToProp: { stroke: true, fill: true, color: true },
   },
 });
 const AnimatedMusicalNotes = Animated.createAnimatedComponent(MusicalNotesIcon);
@@ -29,14 +29,15 @@ const AuthScreen = () => {
 
   useEffect(() => {
     translate.value = withSequence(
-    withTiming(2000, {
-      duration: 400,
-      easing: Easing.inOut(Easing.quad),
-    })
-    ,withTiming(0, {
-      duration: 100,
-      easing: Easing.inOut(Easing.quad),
-    }) )
+      withTiming(2000, {
+        duration: 400,
+        easing: Easing.inOut(Easing.quad),
+      }),
+      withTiming(0, {
+        duration: 100,
+        easing: Easing.inOut(Easing.quad),
+      })
+    );
     iconSize.value = withTiming(handleForm ? 96 : 24, {
       duration: 500,
       easing: Easing.inOut(Easing.quad),
@@ -50,41 +51,46 @@ const AuthScreen = () => {
     return { width: iconSize.value, height: iconSize.value };
   });
 
-
   return (
-    <SafeAreaView className="flex-1 justify-start items-center gap-4 p-6 -mt-4">
-      {/* header */}
-      <View className="bg-teal-50 rounded-full p-4 items-center justify-center border-teal-500 border-2">
-        {/* // 24 en register / 96 en login */}
-        <AnimatedMusicalNotes
-          animatedProps={handleIconSize}
-          className={"stroke-gold"}
-        />
-      </View>
-      {/* // h2 en register / h1 en login */}
-      <CustomText
-        category={handleForm ? "h1" : "h2"}
-        color="black"
-        className="font-bold"
-      >
-        inkTunes
-      </CustomText>
-      {/* // span en register / p en login */}
-      <CustomText
-        category={handleForm ? "p" : "span"}
-        color="gray"
-        className="-mt-4"
-      >
-        Tu Musica empieza Aqui
-      </CustomText>
-      {/* Form */}
-      <Animated.View style={handleTranslate} className="-mt-2">
-        {handleForm ? (
-          <LoginForm changeToRegister={() => setHandleForm(false)} />
-        ) : (
-          <RegisterForm changeToLogin={() => setHandleForm(true)} />
-        )}
-      </Animated.View>
+    <SafeAreaView className="flex-1">
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        className="flex-1">
+        <View className="flex-1 justify-start items-center gap-4 p-6 -mt-4">
+          {/* header */}
+          <View className="bg-teal-50 rounded-full p-4 items-center justify-center border-teal-500 border-2">
+            {/* // 24 en register / 96 en login */}
+            <AnimatedMusicalNotes
+              animatedProps={handleIconSize}
+              className={"stroke-gold"}
+            />
+          </View>
+          {/* // h2 en register / h1 en login */}
+          <CustomText
+            category={handleForm ? "h1" : "h2"}
+            color="black"
+            className="font-bold"
+          >
+            inkTunes
+          </CustomText>
+          {/* // span en register / p en login */}
+          <CustomText
+            category={handleForm ? "p" : "span"}
+            color="gray"
+            className="-mt-4"
+          >
+            Tu Musica empieza Aqui
+          </CustomText>
+          {/* Form */}
+          <Animated.View style={handleTranslate} className="-mt-2">
+            {handleForm ? (
+              <LoginForm changeToRegister={() => setHandleForm(false)} />
+            ) : (
+              <RegisterForm changeToLogin={() => setHandleForm(true)} />
+            )}
+          </Animated.View>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

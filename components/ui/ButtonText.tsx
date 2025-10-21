@@ -40,7 +40,7 @@ const ButtonText = ({
     >
         <CustomText
             category='span'
-            color={getAutoTextColor(category, variant)}
+            color={getAutoTextColor(category, variant, disabled)}
         >
             {text}
         </CustomText>
@@ -51,7 +51,8 @@ const ButtonText = ({
 
  
   // Auto-select text color based on button category and variant
-  const getAutoTextColor = (category: ButtonCategory, variant: ButtonVariant): ColorText => {
+  const getAutoTextColor = (category: ButtonCategory, variant: ButtonVariant, disabled: boolean): ColorText => {
+    if(disabled) return "gray";
     
     if (variant === "outline") {
       switch (category) {

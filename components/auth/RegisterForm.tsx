@@ -1,49 +1,105 @@
+import { useAuthValidation } from "@/lib/hooks/useAuthValidation";
+import { registerSchema } from "@/lib/schemas/authSchemas";
 import React from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import ButtonText from "../ui/ButtonText";
 import CustomText from "../ui/CustomText";
+import InputField from "../ui/InputField";
 
 interface RegisterFormProps {
   changeToLogin: () => void;
 }
 
 
-const RegisterForm = ({ 
-    changeToLogin
-}: RegisterFormProps) => {
+const RegisterForm = ({
+   changeToLogin
+   }: RegisterFormProps) => {
+  const {
+    values,
+    errors,
+    touched,
+    handleChangeField,
+    handleBlurField,
+    handleSubmitForm,
+    isSubmitting,
+  } = useAuthValidation({
+    schema: registerSchema,
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    onSubmit: async (values) => {
+      console.log(`🔄 Iniciando registro... con los datos`, values);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      console.log("✅ Registro exitoso:", values);
+    },
+  });
+
   return (
-    <View className="w-full justify-start border-black border-2 bg-white p-4 gap-2">
-      <CustomText>Nombre completo</CustomText>
-      <TextInput 
+    <View className="w-full justify-start border-black border-2 bg-white px-4 py-2">
+      <InputField
+        label="Nombre"
         placeholder="Nombre Apellido"
-        className="border-2 focus:border-primary focus:ring-primary"
+        icon="person-outline"
+        value={values.name}
+        touched={touched.name}
+        error={errors.name}
+        onChangeText={handleChangeField("name")}
+        onBlur={handleBlurField("name")}
       />
-      <CustomText>Email</CustomText>
-      <TextInput 
+
+      <InputField
+        label="Email"
         placeholder="tu@email.com"
-        className="border-2 focus:border-primary focus:ring-primary"
+        icon="mail-outline"
+        value={values.email}
+        touched={touched.email}
+        error={errors.email}
+        onChangeText={handleChangeField("email")}
+        onBlur={handleBlurField("email")}
       />
-      <CustomText>Contraseña</CustomText>
-      <TextInput 
-        placeholder="*********"
-        className="border-2 focus:border-primary focus:ring-primary"
+
+      <InputField
+        label="Contraseña"
+        placeholder="**********"
+        icon="lock-closed-outline"
+        secureTextEntry
+        value={values.password}
+        touched={touched.password}
+        error={errors.password}
+        onChangeText={handleChangeField("password")}
+        onBlur={handleBlurField("password")}
       />
-      <CustomText>Confirmar contraseña</CustomText>
-      <TextInput 
-        placeholder="*********"
-        className="border-2 focus:border-primary focus:ring-primary"
+
+      <InputField
+        label="Confirmar contraseña"
+        placeholder="**********"
+        icon="lock-closed-outline"
+        secureTextEntry
+        value={values.confirmPassword}
+        touched={touched.confirmPassword}
+        error={errors.confirmPassword}
+        onChangeText={handleChangeField("confirmPassword")}
+        onBlur={handleBlurField("confirmPassword")}
       />
+
       <View>
         {/* CheckBox para términos y condiciones */}
         <CustomText color="gray" category="span">
           Al registrarte, aceptas nuestros{' '}
-            <CustomText color="teal" category="link">
-                términos y condiciones
-            </CustomText>
+          <CustomText color="teal" category="link">
+            términos y condiciones
+          </CustomText>
         </CustomText>
 
       </View>
-      <ButtonText text="Registrarse" />
+      <ButtonText 
+        text={isSubmitting ? 'Cargando...' : 'Registrate'}
+        onPress={handleSubmitForm}
+        disabled={isSubmitting}
+      />
       <View className="flex-row justify-center items-center gap-4 w-full ">
         <View className="w-1/4 border-t-2 border-border" />
         <CustomText color="gray" category="span">

@@ -1,10 +1,21 @@
-import { Stack } from "expo-router";
+import { AuthProvider } from "@/lib/contexts/auth/AuthProvider";
+import { useAuth } from "@/lib/hooks/useAuthContext";
+import { Redirect, Stack } from "expo-router";
 
 export default function RootLayout() {
-  return <Stack>
-    <Stack.Screen 
-      name="(auth)" 
-      options={{ headerShown: false }}
-    />
-  </Stack>;
+
+const {isLoggedIn, isLoading} = useAuth();
+
+if(isLoading) return null;
+if(isLoggedIn) return <Redirect href="/"/>;
+  return (
+    <AuthProvider>
+      <Stack>
+        <Stack.Screen
+          name="(auth)" 
+          options={{ headerShown: false }}
+        />
+      </Stack>
+    </AuthProvider>
+  );
 }
